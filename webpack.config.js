@@ -46,7 +46,7 @@ module.exports = (_, { mode }) => {
     entry: ['./src/scripts/index.js', './src/styles/main.scss'],
 
     output: {
-      filename: 'scripts/[hash].[name].js',
+      filename: 'scripts/[name].[hash].js',
       path: path.resolve(__dirname, 'dist'),
     },
 
@@ -81,10 +81,11 @@ module.exports = (_, { mode }) => {
         },
         {
           loader: 'file-loader',
-          test: /\.(eot|woff|woff2|ttf)$/i,
+          test: /\.(eot|woff2?|ttf)$/i,
           options: {
             outputPath: 'fonts/',
-            publicPath: '/fonts/',
+            publicPath: '../fonts/',
+            name: '[name].[ext]',
           },
         },
       ],
