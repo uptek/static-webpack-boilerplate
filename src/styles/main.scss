@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'PT Serif', serif;
+
+  src: url('./vendors/fonts/PTSerif-Bold.ttf');
+  src: url('./vendors/fonts/PTSerif-Regular.ttf');
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 720px;
+
+  &--flex {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    min-height: 100vh;
+  }
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+
+  &__img {
+    animation: Hover 1s ease-in-out 0s infinite;
+    height: 240px;
+  }
+}
+
+.content {
+  text-align: center;
+
+  &__title {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  &__subtitle {
+    font-size: 18px;
+  }
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 3px 7px 0 rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.link {
+  &--flat {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+@keyframes Hover {
+  0% {
+    transform: translateY(-24px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-24px);
+  }
+}
