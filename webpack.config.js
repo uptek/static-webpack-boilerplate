@@ -5,6 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const EslintPlugin = require('eslint-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const HTMLPlugins = () =>
   glob.sync('./src/**/*.html').map(
@@ -21,6 +23,8 @@ module.exports = (_, { mode }) => {
 
   const plugins = [
     ...HTMLPlugins(),
+    new EslintPlugin(),
+    new StylelintPlugin(),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
@@ -98,8 +102,7 @@ module.exports = (_, { mode }) => {
     },
 
     devServer: {
-      contentBase: './src/**/*.html',
-      watchContentBase: isDev,
+      watchFiles: ['./src/**/*.html'],
       port: 8080,
       hot: isDev,
       open: isDev,
