@@ -21,7 +21,6 @@
     "@babel/plugin-transform-react-jsx": "^7.17.3",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.3",
-    "babel-plugin-transform-redom-jsx": "^3.0.4",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
@@ -47,10 +46,5 @@
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
-  },
-  "dependencies": {
-    "axios": "^0.26.0",
-    "lozad": "^1.16.0",
-    "redom": "^3.27.1"
   }
 }
