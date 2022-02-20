@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HTMLPlugins = () => {
   return glob.sync('./src/**/*.html').map(
@@ -43,6 +44,14 @@ module.exports = (_, { mode }) => {
     plugins.unshift(
       new MiniCssExtractPlugin({
         filename: 'styles/[name].[fullhash].css',
+      }),
+    );
+
+    plugins.push(
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+        analyzerMode: 'static',
+        reportFilename: '../report/index.html',
       }),
     );
   }
