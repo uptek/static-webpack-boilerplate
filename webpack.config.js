@@ -8,8 +8,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 
-const HTMLPlugins = () =>
-  glob.sync('./src/**/*.html').map(
+const HTMLPlugins = () => {
+  return glob.sync('./src/**/*.html').map(
     (dir) =>
       new HTMLWebpackPlugin({
         template: dir,
@@ -17,6 +17,7 @@ const HTMLPlugins = () =>
         filename: path.basename(dir),
       }),
   );
+};
 
 module.exports = (_, { mode }) => {
   const isDev = mode === 'development';
@@ -41,7 +42,7 @@ module.exports = (_, { mode }) => {
   } else {
     plugins.unshift(
       new MiniCssExtractPlugin({
-        filename: 'styles/[name].[hash].css',
+        filename: 'styles/[name].[fullhash].css',
       }),
     );
   }
@@ -50,7 +51,7 @@ module.exports = (_, { mode }) => {
     entry: ['./src/scripts/index.js', './src/styles/main.scss'],
 
     output: {
-      filename: 'scripts/[name].[hash].js',
+      filename: 'scripts/[name].[fullhash].js',
       path: path.resolve(__dirname, 'dist'),
     },
 
@@ -76,20 +77,17 @@ module.exports = (_, { mode }) => {
           ],
         },
         {
-          loader: 'file-loader',
+          type: 'asset/resource',
           test: /\.(png|jpe?g|gif|svg)$/i,
-          options: {
-            outputPath: 'assets/',
-            publicPath: '/assets/',
+          generator: {
+            filename: 'assets/[hash][ext]',
           },
         },
         {
-          loader: 'file-loader',
+          type: 'asset/resource',
           test: /\.(eot|woff2?|ttf)$/i,
-          options: {
-            outputPath: 'fonts/',
-            publicPath: '../fonts/',
-            name: '[name].[ext]',
+          generator: {
+            filename: 'fonts/[hash][ext]',
           },
         },
       ],
