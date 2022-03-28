@@ -10,12 +10,12 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HTMLPlugins = () => {
-  return glob.sync('src/**/*.html').map(
+  return glob.sync('src/html/**/*.html').map(
     (dir) =>
       new HTMLWebpackPlugin({
         template: dir,
         publicPath: '/',
-        filename: dir.split('src')[1],
+        filename: dir.split(/src[\\/]html/)[1],
       }),
   );
 };
